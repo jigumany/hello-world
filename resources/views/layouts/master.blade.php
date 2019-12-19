@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <!--
+
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
@@ -27,16 +28,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+    <!-- <form class="form-inline ml-3"> -->
+      <div class="input-group input-group-sm ml-3">
+        <input class="form-control form-control-navbar"@keyup="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
+          <button class="btn btn-navbar" @click="searchit">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
-    </form>
+    <!-- </form> -->
 
   </nav>
   <!-- /.navbar -->
@@ -60,6 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="info">
           <a href="#" class="d-block">
             {{ Auth::user()->name }}
+            <p>{{ Auth::user()->type }}</p>
           </a>
         </div>
       </div>
@@ -77,7 +79,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
             </router-link>
             </li>
-        <li class="nav-item has-treeview">
+            @can('isAdmin')
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog green"></i>
               <p>
@@ -94,6 +97,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+
+          <li class="nav-item">
+            <router-link to="/developer" class="nav-link">
+                <i class="nav-icon fas fa-cogs yellow"></i>
+                <p>
+                    Developer
+                </p>
+            </router-link>
+            </li>
+            @endcan
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
                 <i class="nav-icon fas fa-user blue"></i>
@@ -131,6 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <router-view></router-view>
+        <vue-progress-bar></vue-progress-bar>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -148,6 +162,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </footer>
 </div>
 <!-- ./wrapper -->
+
+@auth
+<script>
+    window.user = @json(auth()->user())
+</script>
+@endauth
 
 <script src="/js/app.js"></script>
 </body>
