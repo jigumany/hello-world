@@ -258,7 +258,11 @@ export default {
         .put("api/profile")
         .then(() => {
           this.$Progress.finish();
-          Fire.$emit("AfterCreate");
+          swal.fire({
+            icon: "success",
+            title: "updated",
+            text: "Your profile was updated succefully"
+          });
         })
 
         .catch(() => {

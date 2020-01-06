@@ -2483,7 +2483,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form.put("api/profile").then(function () {
         _this.$Progress.finish();
 
-        Fire.$emit("AfterCreate");
+        swal.fire({
+          icon: "success",
+          title: "updated",
+          text: "Your profile was updated succefully"
+        });
       })["catch"](function () {
         _this.$Progress.fail();
       });
@@ -80707,8 +80711,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\George\laradev\laradev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\George\laradev\laradev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\George\Documents\my apps\laradev\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\George\Documents\my apps\laradev\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
